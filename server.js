@@ -1,57 +1,78 @@
-// server.js
+// Set up ======================================================================
+// Get all the tools we need
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 8080;
+const mongoose = require("mongoose");
+const passport = require("passport");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const methodOverride = require("method-override");
+const flash = require("express-flash");
+const morgan = require("morgan");
+const connectDB = require("./config/database.js");
+const mainRoutes = require("./routes/main");
+const postRoutes = require("./routes/posts");
+const dotenv = require("dotenv");
 
-// set up ======================================================================
-// get all the tools we need
-const express  = require('express');
-const app      = express();
-const port     = process.env.PORT || 8080;
-const mongoose = require('mongoose');
-const passport = require('passport');
-const flash    = require('connect-flash');
-const multer = require('multer');
-const ObjectId = require('mongodb').ObjectID
+const bodyParser = require("body-parser");
+const multer = require("multer");
 
-const morgan       = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const session      = require('express-session');
+// Configuration ===============================================================
 
-const configDB = require('./config/database.js');
+// Require .env file in config folder
+dotenv.config({ path: "./config/config.env" }); // load config
 
-// configuration ===============================================================
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-// connect to our database
-mongoose.connect(configDB.url, (err, database) => {
-  if (err) return console.log(err)
-  connect(database)
-});
+// Passport config
+require("./config/passport")(passport);
 
-// set up our express application
-app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json()); // get information from html forms
+// Connect to our database
+connectDB();
+
+// Use ejs for views
+app.set("view engine", "ejs");
+
+// Static folder
+app.use(express.static("public"));
+
+// Body parsing
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'))
+app.use(bodyParser.json()); // get information from html forms
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+// Logging
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev")); // log every request to the console
+}
 
-// required for passport
-require('./config/passport')(passport); // pass passport for configuration
-app.use(session({
-    secret: 'rcbootcamp2019c', // session secret
-    resave: true,
-    saveUninitialized: true
-}));
+//Use forms for put / delete
+app.use(methodOverride("_method"));
+
+// Setup Sessions - stored in MongoDB
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    //!Change: MongoStore syntax has changed
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+    }),
+  })
+);
+
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
 
+// Use flash messages for errors, info, ect...
+app.use(flash());
 
-// routes ======================================================================
-const connect = (db) => require('./app/routes.js')(app, passport, db, multer, ObjectId); // load our routes and pass in our app and fully configured passport
+// Routes ======================================================================
+app.use("/", mainRoutes);
+app.use("/post", postRoutes);
 
-
-// launch ======================================================================
-app.listen(port);
-console.log('The magic happens on port ' + port);
+// Launch ======================================================================
+app.listen(
+  port,
+  console.log(`Server running on ${process.env.NODE_ENV} mode on PORT ${port}`)
+);

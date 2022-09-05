@@ -1,33 +1,35 @@
-<%- include('header'); -%>
-  <div class="container">
-    <div class="col-sm-6 col-sm-offset-3">
+<%- include('partials/header'); -%>
 
-        <h1><span class="fa fa-sign-in"></span> Login</h1>
+    <header class='header' id="login-header">
+        <a class="logo" href="/"> <img class="icon" src="img/lightning-pos-icon.svg"></img> Lightning</a>
+    </header>
 
-        <% if (message.length > 0) { %>
-            <div class="alert alert-danger"><%= message %></div>
-        <% } %>
+    <section id="logIn">
+        <% if (locals.messages.errors) { %>
+            <% messages.errors.forEach( el=> { %>
+                <div class="alert alert-danger">
+                    <%= el.msg %>
+                </div>
+                <% }) %>
+                    <% } %>
+                        <% if (locals.messages.info) { %>
+                            <% messages.info.forEach( el=> { %>
+                                <div class="alert alert-info">
+                                    <%= el.msg %>
+                                </div>
+                                <% }) %>
+                                    <% } %>
 
-        <!-- LOGIN FORM -->
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" name="email">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password">
-            </div>
-
-            <button type="submit" class="btn btn-warning btn-lg">Login</button>
-        </form>
-
-        <hr>
-
-        <p>Need an account? <a href="/signup">Signup</a></p>
-        <p>Or go <a href="/">home</a>.</p>
-
-
-    </div>
-  </div>
-<%- include('footer'); -%>
+                                        <!-- LOGIN FORM -->
+                                        <form action="/login" method="post">
+                                            <h2 class="gold-text">Log in to your account</h2>
+                                            <input type="text" class="form-control" name="email"
+                                                placeholder="Email Adress">
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="Password">
+                                            <button type="submit" class="btn primary-btn">Login</button>
+                                            <p>Not registered? <a class="gold-text" href="/signup">Create an account</a>
+                                            </p>
+                                        </form>
+    </section>
+    <%- include('partials/footer'); -%>

@@ -1,11 +1,56 @@
-<%- include('header'); -%>
-  <div class="container">
-      <div class="jumbotron text-center">
-          <h1>Quickpound</h1>
-          <img src="img/default.png" alt="Quickpound Logo">
-          <p>Login or Signup:</p>
-          <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-          <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
-      </div>
-  </div>
-<%- include('footer'); -%>
+<%- include('partials/header'); -%>
+  <header id="header" class="header">
+    <a class="logo" href="/"> <img class="icon" src="img/lightning-pos-icon.svg"></img> Lightning</a>
+    <a href="/login" class="login">Log In</a>
+  </header>
+
+  <section id="landing">
+    <div class="landing-text">
+      <h1 class="landing-h1">The Fastest Restaurant Point of Sale System</h1>
+      <p class="landing-p">Built with the focus on speed and simplicity from the minds of restaurant people</p>
+      <a href="" class="demo-btn primary-btn btn">Book a Demo</a>
+      <a href="/signup" class="start-btn secondary-btn btn">Sign Up</a>
+    </div>
+    <img src="img/landing-background.png" alt="" class="landing-img">
+  </section>
+  <section id="services">
+    <ul role="list" class="cards">
+      <li class="service-card" role="list">
+        <img class="service-icon" src="img/service-icon1.svg" alt="">
+        <h3>Track Sales</h3>
+        <p>Whether you sell coffee or memberships, all purchases are secure and trackable</p>
+      </li>
+      <li class="service-card" role="list">
+        <img class="service-icon" src="img/service-icon2.svg" alt="">
+        <h3>Manage Employees</h3>
+        <p>Lightning helps you support and manage them so they can in turn make you thrive</p>
+      </li>
+      <li class="service-card" role="list">
+        <img class="service-icon" src="img/service-icon3.svg" alt="">
+        <h3>Track Sales</h3>
+        <p>Access your dashboard and manage your business from anywhere</p>
+      </li>
+    </ul>
+  </section>
+  <section id="about">
+    <div class="about-content">
+      <h2>Made by people from the restaurant industry.</h2>
+      <p>Lightning point of sale system was created with the ideas and mindset of former waiters and restaurant owners.
+      </p>
+      <a href="/" class="start-btn secondary-btn btn">Our Story</a>
+    </div>
+    <div class="about-background"></div>
+
+  </section>
+  <section id="demo">
+    <h2>Book a Demo</h2>
+    <p>Tell us about your business below and we’ll reach out to discuss your specific needs!</p>
+    <form action="">
+      <input type="text" placeholder="First Name">
+      <input type="text" placeholder="Last Name">
+      <input type="text" placeholder="Email">
+      <input type="text" placeholder="Company">
+      <button class="btn">Next</button>
+    </form>
+  </section>
+  <%- include('partials/footer'); -%>
