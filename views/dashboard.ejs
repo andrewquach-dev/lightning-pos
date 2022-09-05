@@ -1,15 +1,57 @@
 <%- include('partials/header-v2') -%>
     <header id="header" class="header">
-        <a class="logo" href="/"> <img class="icon" src="img/lightning-pos-icon.svg"></img> Lightning</a>
-        <a href="/login" class="login">Log In</a>
+        <div class="container">
+            <!-- TODO: change logo pic to lighter color -->
+            <a class="logo" href="/"> <img class="icon" src="img/lightning-pos-icon.svg"></img> Lightning</a>
+            <ul role='list' class="links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/">Account</a></li>
+                <li><a href="/">Inbox</a></li>
+                <li><a href="/">Help</a></li>
+                <li><a href="/">Settings</a></li>
+            </ul>
+        </div>
     </header>
 
-    <section id="dashboard">
-        <div class="parent">
-            <div class="div1"> </div>
-            <div class="div2"> </div>
-            <div class="div3"> </div>
-            <div class="div4"> </div>
+    <section id="dashboard" class="container">
+        <div class="row">
+
+
+        </div>
+        <div class="card-tainer">
+            <div class="col">
+                <div class="card lg-width lg-height"></div>
+                <div class="card lg-width lg-height"></div>
+            </div>
+            <div class="col">
+                <div class="card sm-width md-height"></div>
+                <div class="card sm-width sm-height"></div>
+                <div class="card sm-width sm-height general">
+                    <div class="card-content">
+                        <img src="img/tableIcon.svg" alt="">
+                        <div class="card-text">
+                            <p>Seats Taken</p>
+                            <h3>4/50</h3>
+                        </div>
+
+                    </div>
+                    <div class="card-bot">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+                <div class="card sm-width sm-height general">
+                    <div class="card-content">
+                        <img src="img/addIcon.svg" alt="">
+                        <div class="card-text">
+                            <h4>Add widget</h4>
+                        </div>
+
+                    </div>
+                    <div class="card-bot">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <%- include('partials/footer') -%>
+    <%- include('partials/footer-v2') -%>
