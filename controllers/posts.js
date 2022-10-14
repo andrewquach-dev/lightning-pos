@@ -30,7 +30,7 @@ module.exports = {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
-
+     
       await Post.create({
         title: req.body.title,
         image: result.secure_url,
@@ -71,13 +71,6 @@ module.exports = {
       res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");
-    }
-  },
-  getDashboard: async (req, res) => {
-    try {
-      res.render("dashboard.ejs", { user: req.user });
-    } catch (err) {
-      console.log(err);
     }
   },
 };

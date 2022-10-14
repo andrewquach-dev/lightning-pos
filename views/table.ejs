@@ -1,0 +1,116 @@
+<%- include('partials/header-v2') -%>
+    <header id="header" class="header">
+        <div class="container">
+            <a class="logo" href="/"> <img class="icon" src="/img/lightning-pos-icon.svg"></img> Lightning</a>
+            <ul role='list' class="links">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/">Account</a></li>
+                <li><a href="/">Inbox</a></li>
+                <li><a href="/">Help</a></li>
+                <li><a href="/">Settings</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="dashboard" class="container">
+
+        <% if (order[0]===undefined) { %>
+            <dialog open class="modal" id="modal">
+                <a href="/dashboard/tables/">Close</a>
+                <form action="/dashboard/order/createOrder/<%=table._id%>" method="POST">
+                    <label for="title">Number of People:</label>
+                    <input type="text" id="title" name="title">
+                    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                </form>
+            </dialog>
+            <% } %>
+
+                <div class="card-tainer">
+                    <div class="card lg-width xl-height">
+                        <h3 class="top-card-text">Menu Items</h3>
+                        <div class="menu-items">
+                            <form action="/dashboard/order/addHamburger/<%=table._id%>?_method=PUT" method="POST">
+                                <button type="submit" class="btn btn-primary">Cheeseburger</button>
+                            </form>
+
+                            <form action="/dashboard/order/addFrenchfries/<%=table._id%>?_method=PUT" method="POST">
+                                <button type="submit" class="btn btn-primary">French Fries</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="orders card sm-width xl-height">
+                        <h3 class="top-card-text">Table <%= table.name%>
+                        </h3>
+                        <% if (order[0] !==undefined) { %>
+                            <p>Created by: <%= order[0].createdBy%>
+                            </p>
+                            <p>Date: <%= order[0].createdAt%>
+                            </p>
+                            <p>Number of people: <%= order[0].peopleCount%>
+                            </p>
+                            <hr>
+                            <ul>
+                                <% let items=order[0].itemsOrdered.reduce((a, o)=> {if (a.some((f) => f.name == o.name))
+                                    {let i = a.findIndex((x) => x.name == o.name);a[i].count++; a[i].total += o.price;}
+                                    else {a.push({ count: 1, name: o.name, total: o.price });}return a;}, []) %>
+                                    <% for(var i=0; i<items.length; i++) {%>
+                                        <li>
+                                            <span>
+                                                <%= items[i].count %>x
+                                            </span>
+                                            <span>
+                                                <%= items[i].name %>
+                                            </span>
+                                            <span>$<%= items[i].total %></span>
+                                        </li>
+                                        <% } %>
+
+                                            <li><span>Tax 5.25%:</span>
+                                                <span>$<%= (order[0].itemsOrdered.reduce((a,e)=>
+                                                        a+=e.price,0)*.0525).toFixed(2) %></span>
+                                            </li>
+                                            <li><span>Subtotal:</span>
+                                                <span>$<%= order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0) %></span>
+                                            </li>
+                                            <li><span>Total:</span>
+                                                <span>$<% let total=parseFloat(order[0].itemsOrdered.reduce((a,e)=>
+                                                        a+=e.price,0))+parseFloat((order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0)*.0525).toFixed(2))
+                                                        %>
+                                                        <%= total %></span>
+                                            </li>
+
+
+                            </ul>
+                            <ul>
+                                <% if (order[0].paymentAmount!==0) { %>
+                                    <li>Cash: $<%= order[0].paymentAmount %>
+                                    </li>
+                                    <li>Amount owed: $ <%= order[0].amountOwed %>
+                                    </li>
+                                    <% } %>
+                            </ul>
+                            <% } %>
+
+
+
+                                <div class="card-bot">
+                                    <dialog class="modal" id="modal">
+                                        <a href="/dashboard/tables/<%=table._id%>">Close</a>
+                                        <form action="/dashboard/order/addPayment/<%=table._id%>?_method=PUT"
+                                            method="POST">
+                                            <label for="paymentAmount">Payment Amount:</label>
+                                            <input type="text" id="paymentAmount" name="paymentAmount">
+                                            <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                                        </form>
+                                    </dialog>
+                                    <button class="open-button">Payment</button>
+                                    <form action="/dashboard/order/closeOrder/<%=table._id%>?_method=PUT" method="POST">
+                                        <button type="submit" class="btn btn-primary">Close bill</button>
+                                    </form>
+                                </div>
+                    </div>
+
+                </div>
+    </section>
+    <%- include('partials/footer-v2') -%>

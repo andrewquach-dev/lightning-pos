@@ -1,0 +1,45 @@
+<%- include('partials/header-v2') -%>
+    <header id="header" class="header">
+        <div class="container">
+            <a class="logo" href="/"> <img class="icon" src="/img/lightning-pos-icon.svg"></img> Lightning</a>
+            <ul role='list' class="links">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/">Account</a></li>
+                <li><a href="/">Inbox</a></li>
+                <li><a href="/">Help</a></li>
+                <li><a href="/">Settings</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="dashboard" class="container">
+        <div class="tables-card card xl-height xl-width">
+            <div class="top-card-text">
+                <h3>Recent Orders</h3>
+                <a href="">Sort by: Newest</a>
+            </div>
+            <div class="tables-view">
+                <ul>
+                <% for(var i=0; i<orders.length; i++) {%>
+                    <li>
+                        <span><%= orders[i]._id %></span>
+                        <span>
+                            <% let items = orders[i].itemsOrdered.reduce((a,e,j)=>{
+                                a+=e.name
+                                if(j!==orders[i].itemsOrdered.length-1){
+                                    a+=", "
+                                }
+                                return a;
+                            },"") %>
+                            <%= items %>
+                        </span>
+                        <span><%= orders[i].total %></span>
+                        <span><%= orders[i].createdAt %></span>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <%- include('partials/footer-v2') -%>

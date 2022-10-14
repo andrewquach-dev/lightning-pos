@@ -121,19 +121,23 @@ a:hover {
     align-self: center;
     margin-left: 40px;
 }
-.card-text p{
+
+.card-text p {
     font-size: 14px;
     color: #93918c;
 }
-.card-text h3{
+
+.card-text h3 {
     color: #4b4744;
     font-size: 36px;
 }
-.card-text h4{
+
+.card-text h4 {
     color: #4b4744;
     font-size: 18px;
     font-weight: 700;
 }
+
 .card-bot {
     background-color: #fffff2;
     width: 100%;
@@ -151,9 +155,15 @@ a:hover {
 }
 
 .lg-width {
-    padding: 40px;
     width: 1085px;
 }
+
+.xl-width {
+
+    width: 1200px;
+}
+
+
 
 .sm-width {
     width: 319px;
@@ -172,7 +182,112 @@ a:hover {
     height: 350px;
 }
 
+.xl-height {
+    height: 1000px;
+}
 
+
+
+.col>.lg-height:first-of-type {
+    background-image: url('/img/firstWidget.png');
+    width: 100%;
+    height: 350px;
+}
+
+.col>.lg-height:nth-child(2) {
+    background-image: url('/img/secondWidget.png');
+    background-repeat: no-repeat;
+    display: flex;
+}
+
+.col>.lg-height:nth-child(2)>a {
+    margin-top: auto;
+}
+
+.col>.md-height:first-of-type {
+    background-image: url('/img/thirdWidget.png');
+    width: 100%;
+    height: 300px;
+}
+
+.top-card-text {
+    padding: 25px;
+    color: #93918C;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-card-text a {
+    font-weight: bold;
+}
+
+.card-bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tables-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.tables-card>.card-bot {
+    margin-top: auto;
+}
+
+.tables-view {
+    padding: 0 100px;
+}
+
+
+.table {
+    float: left;
+    width: 8em;
+    height: 8em;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 15px;
+    background: #EBEBE8;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+}
+
+.table>a {
+    font-size: 20px;
+    font-weight: bold;
+    color: #93918C;
+}
+
+.table>a:hover {
+    color: #51B5E0;
+}
+
+.menu-items {
+    padding: 40px;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+}
+
+.orders>p {
+    padding: 0 25px;
+    color: #6F6C68;
+}
+
+hr {
+    margin: 25px;
+    background-color: #93918C;
+    border-radius: 5px;
+}
+
+.orders>.card-bot {
+    margin-top: auto;
+}
 
 #footer {
     margin-top: auto;

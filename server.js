@@ -13,6 +13,9 @@ const morgan = require("morgan");
 const connectDB = require("./config/database.js");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
+const dashboardRoutes = require("./routes/dashboard");
+const tableRoutes = require("./routes/tables");
+const orderRoutes = require("./routes/orders");
 const dotenv = require("dotenv");
 
 const bodyParser = require("body-parser");
@@ -38,6 +41,7 @@ app.use(express.static("public"));
 // Body parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // get information from html forms
+app.use(express.json());
 
 // Logging
 if (process.env.NODE_ENV === "development") {
@@ -70,6 +74,9 @@ app.use(flash());
 // Routes ======================================================================
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
+app.use("/dashboard", dashboardRoutes);
+app.use("/dashboard/tables", tableRoutes);
+app.use("/dashboard/order", orderRoutes);
 
 // Launch ======================================================================
 app.listen(
