@@ -4,7 +4,7 @@ Lightning POS is a restaurant point of sale application written in Node.js and E
 
 **Link to project:** http://lightning-pos.com/
 
-![dashboard](https://raw.githubusercontent.com/ndrwquach/lightning-pos/main/assets/lightningpos-dashboard-screenshot.png)
+![dashboard](https://raw.githubusercontent.com/ndrwquach/lightning-pos/main/assets/lightningpos-dashboard-screenshot.png?token=GHSAT0AAAAAABUFDWWTXSS52AKS7OHS74NEY2N5JCQ)
 
 ## How It's Made:
 
