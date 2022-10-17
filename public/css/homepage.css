@@ -1,3 +1,301 @@
+body {
+    word-wrap: break-word;
+    font-family: nunito-sans, sans-serif;
+    background-color: #FCFCFA;
+    color: #262422;
+
+    max-width: 1000px;
+    padding: 0 25px;
+    margin: auto;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    height: 200px;
+}
+
+
+
+a {
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+    color: #6F7171;
+}
+
+a:hover {
+    color: #51B5E0;
+}
+
+.header {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo {
+    font-weight: 700;
+    color: #262422;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.icon {
+    display: inline;
+    width: 19px;
+    height: 33.06px;
+    padding-right: 6px;
+}
+
+
+
+.login {
+    font-weight: 700;
+    font-size: 16px;
+    color: #262422;
+}
+
+
+#landing {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 121.24px;
+}
+
+
+
+.landing-h1 {
+    max-width: 553px;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 50px;
+}
+
+.landing-p {
+    max-width: 319px;
+    color: #6F7171;
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 16px;
+    margin-bottom: 34px;
+}
+
+.demo-btn {
+    margin-right: 11.4px;
+}
+
+.landing-img {
+    width: 345px;
+    height: 345px;
+    align-content: center;
+}
+
+#services {
+    margin-top: 108px;
+}
+
+.cards {
+    display: flex;
+    padding: 0;
+}
+
+.service-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 35px;
+    border: solid #ebebe8 2px;
+    border-radius: 15px;
+    box-shadow: 0 2px 3px -1px #ebebe8;
+}
+
+.service-card h3 {
+    font-size: 18px;
+    color: #5F4C4C;
+    margin-top: 15px;
+}
+
+.service-card p {
+    color: #93918C;
+}
+
+.service-card:nth-of-type(2) {
+    margin: 0 26px;
+}
+
+.service-icon {
+    width: 84px;
+    height: 84px;
+    margin-top: -67px;
+}
+
+#about {
+    margin-top: 210px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-background {
+    height: 400px;
+    width: 400px;
+    background: linear-gradient(#fffdba -40%, #fcfcfa 100%);
+    position: absolute;
+    border-radius: 50%;
+    margin-top: -82px;
+    margin-bottom: -64px;
+    z-index: -1;
+}
+
+.about-content h2 {
+    font-size: 40px;
+}
+
+.about-content p {
+    margin-top: 4px;
+    margin-bottom: 86px;
+    color: #6F7171;
+    max-width: 491px;
+    text-align: center;
+}
+
+#demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 227px 0;
+}
+
+
+#demo form {
+    padding: 48px;
+    border: 2px solid #F5C711;
+    border-radius: 15px;
+    max-width: 774px;
+}
+
+
+
+#demo form input:not(:first-child) {
+    margin-top: 40px;
+}
+
+#demo .btn {
+    margin-top: 44px;
+}
+
+#demo h2 {
+    font-size: 32px;
+}
+
+#demo p {
+    color: #6F7171;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+#footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#footer .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#footer .row>* {
+    flex: 1;
+}
+
+#footer .col {
+    display: flex;
+    flex-direction: column;
+}
+
+#footer ul {
+    margin: 0;
+    padding: 0;
+    margin-top: 8px;
+}
+
+#footer ul li:first-child {
+    font-weight: bold;
+    margin-bottom: 26px;
+}
+
+#footer ul li:not(:first-child) {
+    margin-bottom: 20px;
+    color: #6F7171;
+}
+
+
+#footer p {
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-top: 108px;
+}
+
+
+#logIn {
+    height: 940px;
+    display: grid;
+    place-content: center;
+}
+
+#logIn form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fcfcfa;
+    width: 300px;
+}
+
+#logIn form input {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #EBEBE8;
+}
+
+#logIn form h2 {
+    font-size: 24px;
+}
+
+#logIn form p {
+    font-size: 14px;
+}
+
+#logIn form input,
+#logIn form button,
+#logIn form h2 {
+    margin-bottom: 20px;
+}
+
+#logIn form button {
+    width: 100%;
+}
+
+.gold-text {
+    color: #C19106;
+}
+
 #landing {
     display: flex;
     justify-content: space-between;

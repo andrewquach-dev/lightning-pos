@@ -19,11 +19,17 @@
                 <h3>Recent Orders</h3>
                 <a href="">Sort by: Newest</a>
             </div>
-            <div class="tables-view">
-                <ul>
+            <div class="orders-view">
+                <ul class="order-list">
+                    <li class="order-list-item"><span>ID</span>
+                    <span>Items Ordered</span>
+                    <span>Price</span>
+                    <span>Date</span>
+                    </li>
                 <% for(var i=0; i<orders.length; i++) {%>
-                    <li>
-                        <span><%= orders[i]._id %></span>
+                    <li class="order-list-item">
+                        <span><%= (orders[i]._id).toString().slice(0,6) %>
+                        </span>
                         <span>
                             <% let items = orders[i].itemsOrdered.reduce((a,e,j)=>{
                                 a+=e.name
@@ -34,8 +40,8 @@
                             },"") %>
                             <%= items %>
                         </span>
-                        <span><%= orders[i].total %></span>
-                        <span><%= orders[i].createdAt %></span>
+                        <span><%= '$'+ orders[i].total %></span>
+                        <span><%= (orders[i].createdAt).toString().split(' ').slice(1,4) %></span>
                     </li>
                     <% } %>
                 </ul>

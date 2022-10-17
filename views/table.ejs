@@ -15,33 +15,40 @@
 
     <section id="dashboard" class="container">
 
-        <% if (order[0]===undefined) { %>
-            <dialog open class="modal" id="modal">
-                <a href="/dashboard/tables/">Close</a>
-                <form action="/dashboard/order/createOrder/<%=table._id%>" method="POST">
-                    <label for="title">Number of People:</label>
-                    <input type="text" id="title" name="title">
-                    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-                </form>
-            </dialog>
-            <% } %>
 
-                <div class="card-tainer">
-                    <div class="card lg-width xl-height">
-                        <h3 class="top-card-text">Menu Items</h3>
-                        <div class="menu-items">
-                            <form action="/dashboard/order/addHamburger/<%=table._id%>?_method=PUT" method="POST">
-                                <button type="submit" class="btn btn-primary">Cheeseburger</button>
-                            </form>
 
-                            <form action="/dashboard/order/addFrenchfries/<%=table._id%>?_method=PUT" method="POST">
-                                <button type="submit" class="btn btn-primary">French Fries</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="orders card sm-width xl-height">
-                        <h3 class="top-card-text">Table <%= table.name%>
-                        </h3>
+        <div class="card-tainer">
+            <div class="card lg-width xl-height">
+                <h3 class="top-card-text">Menu Items</h3>
+                <div class="menu-items">
+                    <form action="/dashboard/order/addHamburger/<%=table._id%>?_method=PUT" method="POST">
+                        <button class="pic-btn" type="submit"><img src="/img/cheeseburger.jpg" alt="">
+                            <h3>Cheeseburger</h3>
+                        </button>
+                    </form>
+
+                    <form action="/dashboard/order/addFrenchfries/<%=table._id%>?_method=PUT" method="POST">
+                        <button class="pic-btn" type="submit"><img src="/img/frenchfries.jpg" alt="">
+                            <h3>French fries</h3>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="orders card sm-width xl-height">
+                <h3 class="top-card-text">Table <%= table.name%>
+                </h3>
+                <% if(order[0]===undefined){ %>
+                    <button class="btn open-button ppl-count-btn"><img src="/img/people.svg" alt=""></button>
+
+                    <dialog class="modal ppl-count-modal" id="modal">
+                        <button class="btn close-button"><img src="/img/close.svg" alt=""></button>
+                        <form action="/dashboard/order/createOrder/<%=table._id%>" method="POST">
+                            <label for="title">Number of People:</label>
+                            <input type="text" id="title" name="title">
+                            <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                        </form>
+                    </dialog>
+                    <% }%>
                         <% if (order[0] !==undefined) { %>
                             <p>Created by: <%= order[0].createdBy%>
                             </p>
@@ -106,11 +113,11 @@
                                     </dialog>
                                     <button class="open-button">Payment</button>
                                     <form action="/dashboard/order/closeOrder/<%=table._id%>?_method=PUT" method="POST">
-                                        <button type="submit" class="btn btn-primary">Close bill</button>
+                                        <button type="submit" class="open-button">Close bill</button>
                                     </form>
                                 </div>
-                    </div>
+            </div>
 
-                </div>
+        </div>
     </section>
     <%- include('partials/footer-v2') -%>

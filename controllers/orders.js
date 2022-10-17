@@ -23,7 +23,7 @@ module.exports = {
     try {
       console.log("id" + req.params.id);
       await Order.findOneAndUpdate(
-        { table: req.params.id },
+        { table: req.params.id , isClosed: false},
         {
           $push: { itemsOrdered: { name: "french fries", price: 5.0 } },
         }
@@ -38,7 +38,7 @@ module.exports = {
     try {
       console.log("id" + req.params.id);
       await Order.findOneAndUpdate(
-        { table: req.params.id },
+        { table: req.params.id, isClosed: false },
         {
           $push: { itemsOrdered: { name: "hamburger", price: 5.0 } },
         }
@@ -51,7 +51,7 @@ module.exports = {
   },
   addPayment: async (req, res) => {
     try {
-      const order = await Order.findOne({ table: req.params.id });
+      const order = await Order.findOne({ table: req.params.id , isClosed: false});
       let total =
         +parseFloat(order.itemsOrdered.reduce((a, e) => (a += e.price), 0)) +
         +parseFloat(
@@ -61,7 +61,7 @@ module.exports = {
         );
       console.log(req.body);
       await Order.findOneAndUpdate(
-        { table: req.params.id },
+        { table: req.params.id, isClosed: false },
         {
           $set: {
             paymentAmount: +req.body.paymentAmount,
@@ -79,7 +79,7 @@ module.exports = {
   closeOrder: async (req, res) => {
     try {
       await Order.findOneAndUpdate(
-        { table: req.params.id },
+        { table: req.params.id, isClosed: false },
         {
           $set: {
             isClosed: true,

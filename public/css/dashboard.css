@@ -35,7 +35,8 @@ a {
     color: #6F7171;
 }
 
-a:hover {
+a:hover,
+.open-button:hover {
     color: #7bc7f2;
 }
 
@@ -98,11 +99,30 @@ a:hover {
     gap: 25px;
 }
 
-.card {
+.card,
+.modal {
     border-radius: 15px;
     background-color: #fcfcfa;
     box-shadow: 0px 8px 17px -17px #262422;
 }
+
+.modal {
+    border: none;
+}
+
+button.ppl-count-btn {
+    height: 45px;
+    width: 45px;
+    padding: 10px;
+    margin-left: 25px;
+}
+
+.ppl-count-btn>img {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+}
+
 
 .general {
     display: flex;
@@ -220,7 +240,10 @@ a:hover {
 .top-card-text a {
     font-weight: bold;
 }
-
+.top-card-text h3{
+    color: #6F7171;
+    font-size: 16px;
+}
 .card-bot {
     display: flex;
     justify-content: space-between;
@@ -236,7 +259,7 @@ a:hover {
 }
 
 .tables-view {
-    padding: 0 100px;
+    padding: 25px;
 }
 
 
@@ -266,6 +289,8 @@ a:hover {
 }
 
 .menu-items {
+    display: flex;
+    gap: 25px;
     padding: 40px;
 }
 
@@ -289,6 +314,101 @@ hr {
     margin-top: auto;
 }
 
+.open-button {
+    border: none;
+    color: #f5c711;
+    background-color: transparent;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+}
+
+dialog>.close-button {
+    height: auto;
+    width: auto;
+    padding: 10px;
+    margin-bottom: 24px;
+}
+
+dialog>.close-button>img {
+    height: 25px;
+}
+
+dialog>form>button {
+    margin-top: 24px;
+    align-self: flex-end;
+}
+
+dialog>form {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog {
+    width: 400px;
+    padding: 24px;
+}
+
+
+dialog>form>label {
+    color: #4B4744;
+    font-size: 18px;
+}
+
+.pic-btn {
+    border: none;
+    background-color: #EBEBE8;
+    border-radius: 15px;
+    padding: 15px;
+    transition: background-color 0.2s ease-in-out;
+}
+.pic-btn:hover {
+    background-color: #C9C7C4;
+}
+
+.pic-btn>h3 {
+    margin-top: 15px;
+}
+
+.menu-items>form {
+    width: 250px;
+}
+
+.order-list{
+    padding: 0;
+    margin: 0;
+}
+
+.order-list-item{
+    list-style-type: none;
+    padding: 0 25px;
+    display: flex;
+
+}
+
+.order-list>li>span{
+    display: inline-block;
+    margin-left: 10px;
+}
+.order-list-item{
+    color: #413F3D;
+}
+.order-list-item:first-of-type{
+   background-color: #FFFFF2;
+   color: #C19106;
+   padding: 10px 25px;
+}
+.order-list>li>span:first-of-type{
+    width: 65px;
+}
+.order-list>li>span:nth-of-type(2){
+    width: 650px;
+}
+.order-list>li>span:nth-of-type(3){
+    width: 200px;
+}
+.order-list>li>span:nth-of-type(4){
+    width: 100px;
+}
 #footer {
     margin-top: auto;
 }
