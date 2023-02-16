@@ -1,10 +1,7 @@
 <%- include('partials/header'); -%>
 
-    <header class='header' id="login-header">
-        <a class="logo" href="/"> <img class="icon" src="img/lightning-pos-icon.svg"></img> Lightning</a>
-    </header>
-
     <section id="logIn">
+        <a class="logo" href="/"> <img class="icon" src="img/lightning-pos-icon.svg"></img> Lightning</a>
         <% if (locals.messages.errors) { %>
             <% messages.errors.forEach( el=> { %>
                 <div class="alert alert-danger">
