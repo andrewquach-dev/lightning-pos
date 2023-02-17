@@ -81,10 +81,7 @@
                                                 <span>$<%= order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0) %></span>
                                             </li>
                                             <li><span>Total:</span>
-                                                <span>$<% let total=parseFloat(order[0].itemsOrdered.reduce((a,e)=>
-                                                        a+=e.price,0))+parseFloat((order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0)*.0525).toFixed(2))
-                                                        %>
-                                                        <%= total %></span>
+                                                <span>$<%= parseFloat(order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0))+parseFloat((order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0)*.0525).toFixed(2)) %></span>
                                             </li>
 
 

@@ -46,10 +46,22 @@
   transform: scale(0.9);
 }
 
-input{
+input {
   border: 0;
-    border-bottom: 1px solid #9e9e9e;
-    height: 36px;
-    width: 100%;
-    background-color: #fcfcfa;
+  border-bottom: 1px solid #9e9e9e;
+  height: 36px;
+  width: 100%;
+  background-color: #fcfcfa;
+}
+
+
+.orders>ul {
+  padding: 0 25px;
+  margin: 0;
+}
+
+.orders>ul>li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
 }
