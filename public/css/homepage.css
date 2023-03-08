@@ -129,6 +129,10 @@ a:hover {
         font-weight: normal;
         text-transform: none;
     }
+
+    .slide-out-menu .close-menu {
+        display: none;
+    }
 }
 
 
