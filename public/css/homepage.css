@@ -36,6 +36,101 @@ a:hover {
     align-items: center;
 }
 
+.burger-menu {
+    display: block;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.change .bar {
+    background-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .burger-menu {
+        display: none;
+    }
+}
+
+.slide-out-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #fff;
+    z-index: 1000;
+    transform: translateX(-250px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.slide-out-menu.show {
+    transform: translateX(0);
+}
+
+.slide-out-menu .close-menu {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.slide-out-menu .close-icon {
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.slide-out-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+}
+
+.slide-out-menu li {
+    margin-bottom: 20px;
+}
+
+.slide-out-menu a {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+    .slide-out-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none;
+        background-color: transparent;
+    }
+
+    .slide-out-menu ul {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .slide-out-menu li {
+        margin-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .slide-out-menu a {
+        font-size: 16px;
+        font-weight: normal;
+        text-transform: none;
+    }
+}
+
 
 .logo {
     font-weight: 700;
@@ -264,12 +359,13 @@ a:hover {
     border-radius: 10px;
     overflow: hidden;
     padding: 77px 55px 33px;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
-    -moz-box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
-    -webkit-box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
-    -o-box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
-    -ms-box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
+    -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
+    -o-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
+    -ms-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
 }
+
 #logIn>a.logo {
     display: flex;
     justify-content: center;
