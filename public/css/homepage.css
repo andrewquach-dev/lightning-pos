@@ -133,8 +133,20 @@ a:hover {
     .slide-out-menu .close-menu {
         display: none;
     }
+
 }
 
+@media (max-width: 768px) {
+
+    #landing {
+        flex-direction: column;
+
+    }
+
+    .landing-img {
+        margin-top: 4em;
+    }
+}
 
 .logo {
     font-weight: 700;
