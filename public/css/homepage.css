@@ -146,6 +146,17 @@ a:hover {
     .landing-img {
         margin-top: 4em;
     }
+
+
+    .cards {
+        flex-direction: column;
+    }
+
+    ul.cards li.service-card{
+        margin: 4em 0 0 0;
+
+    }
+
 }
 
 .logo {
