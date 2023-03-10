@@ -1,7 +1,27 @@
 <%- include('partials/header'); -%>
   <header id="header" class="header">
     <a class="logo" href="/"> <img class="icon" src="img/lightning-pos-icon.svg"></img> Lightning</a>
-    <a href="/login" class="login">Log In</a>
+
+
+    <div class="burger-menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+
+    <div class="slide-out-menu">
+      <div class="close-menu">
+        <span class="close-icon">&times;</span>
+      </div>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Demo</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="/login">Log In</a></li>
+      </ul>
+    </div>
+
   </header>
 
   <section id="landing">
