@@ -65,3 +65,11 @@ input {
   display: flex;
   justify-content: space-between;
 }
+
+ul li:not(:last-child) span:first-child {
+  margin-right: auto;
+}
+
+ul li:not(:nth-last-child(-n+3)) span:nth-child(2) {
+  margin-right: 10px;
+}
