@@ -314,6 +314,10 @@ hr {
     margin-top: auto;
 }
 
+div.card.lg-width.xl-height > div.card-bot {
+    margin-top: auto;
+  }
+
 .open-button {
     border: none;
     color: #f5c711;
