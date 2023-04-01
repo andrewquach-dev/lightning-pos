@@ -1,13 +1,24 @@
-//Modal stuff
-const modal = document.querySelector(".modal");
-const openModal = document.querySelector(".open-button");
-const closeModal = document.querySelector(".close-button");
+// Get references to the button and modal elements
+const openModalButtons = document.querySelectorAll('.openModalButton');
+const closeModalButtons = document.querySelectorAll('.closeModalButton');
 
-openModal.addEventListener("click", () => {
-  modal.showModal();
+// Loop through each open button and add an event listener
+openModalButtons.forEach((button) => {
+  const modalId = button.getAttribute('data-modal');
+  const modal = document.getElementById(modalId);
+
+  button.addEventListener('click', () => {
+    modal.showModal();
+  });
 });
-closeModal.addEventListener("click", () => {
-  modal.close();
+
+// Loop through each close button and add an event listener
+closeModalButtons.forEach((button) => {
+  const modal = button.closest('dialog');
+
+  button.addEventListener('click', () => {
+    modal.close();
+  });
 });
 
 var thumbUp = document.getElementsByClassName("fa-thumbs-up");

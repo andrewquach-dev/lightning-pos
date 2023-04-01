@@ -47,11 +47,11 @@
 }
 
 input {
-  border: 0;
+  border: none;
   border-bottom: 1px solid #9e9e9e;
-  height: 36px;
   width: 100%;
-  background-color: #fcfcfa;
+  background-color: transparent;
+  padding: 15px;
 }
 
 

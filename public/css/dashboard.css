@@ -36,7 +36,7 @@ a {
 }
 
 a:hover,
-.open-button:hover {
+.openModalButton:hover {
     color: #7bc7f2;
 }
 
@@ -91,6 +91,7 @@ a:hover,
     display: flex;
     gap: 25px;
 }
+
 
 .col {
 
@@ -294,7 +295,7 @@ button.ppl-count-btn {
     padding: 40px;
 }
 
-.orders {
+.orders,.menu {
     display: flex;
     flex-direction: column;
 }
@@ -318,7 +319,7 @@ div.card.lg-width.xl-height > div.card-bot {
     margin-top: auto;
   }
 
-.open-button {
+.openModalButton {
     border: none;
     color: #f5c711;
     background-color: transparent;
@@ -326,14 +327,14 @@ div.card.lg-width.xl-height > div.card-bot {
     transition: color 0.2s ease-in-out;
 }
 
-dialog>.close-button {
+dialog>.closeModalButton {
     height: auto;
     width: auto;
     padding: 10px;
     margin-bottom: 24px;
 }
 
-dialog>.close-button>img {
+dialog>.closeModalButton>img {
     height: 25px;
 }
 
@@ -356,6 +357,7 @@ dialog {
 dialog>form>label {
     color: #4B4744;
     font-size: 18px;
+    margin-bottom: .75em;
 }
 
 .pic-btn {
