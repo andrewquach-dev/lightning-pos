@@ -241,10 +241,12 @@ button.ppl-count-btn {
 .top-card-text a {
     font-weight: bold;
 }
-.top-card-text h3{
+
+.top-card-text h3 {
     color: #6F7171;
     font-size: 16px;
 }
+
 .card-bot {
     display: flex;
     justify-content: space-between;
@@ -289,13 +291,23 @@ button.ppl-count-btn {
     color: #51B5E0;
 }
 
+.add-menu-item-modal .form-group {
+    margin: 10px 0;
+}
+
+.form-group:last-of-type input:last-of-type {
+    border-bottom: none;
+}
+
+
 .menu-items {
     display: flex;
     gap: 25px;
     padding: 40px;
 }
 
-.orders,.menu {
+.orders,
+.menu {
     display: flex;
     flex-direction: column;
 }
@@ -315,9 +327,9 @@ hr {
     margin-top: auto;
 }
 
-div.card.lg-width.xl-height > div.card-bot {
+div.card.lg-width.xl-height>div.card-bot {
     margin-top: auto;
-  }
+}
 
 .openModalButton {
     border: none;
@@ -367,6 +379,7 @@ dialog>form>label {
     padding: 15px;
     transition: background-color 0.2s ease-in-out;
 }
+
 .pic-btn:hover {
     background-color: #C9C7C4;
 }
@@ -379,42 +392,49 @@ dialog>form>label {
     width: 250px;
 }
 
-.order-list{
+.order-list {
     padding: 0;
     margin: 0;
 }
 
-.order-list-item{
+.order-list-item {
     list-style-type: none;
     padding: 0 25px;
     display: flex;
 
 }
 
-.order-list>li>span{
+.order-list>li>span {
     display: inline-block;
     margin-left: 10px;
 }
-.order-list-item{
+
+.order-list-item {
     color: #413F3D;
 }
-.order-list-item:first-of-type{
-   background-color: #FFFFF2;
-   color: #C19106;
-   padding: 10px 25px;
+
+.order-list-item:first-of-type {
+    background-color: #FFFFF2;
+    color: #C19106;
+    padding: 10px 25px;
 }
-.order-list>li>span:first-of-type{
+
+.order-list>li>span:first-of-type {
     width: 65px;
 }
-.order-list>li>span:nth-of-type(2){
+
+.order-list>li>span:nth-of-type(2) {
     width: 650px;
 }
-.order-list>li>span:nth-of-type(3){
+
+.order-list>li>span:nth-of-type(3) {
     width: 200px;
 }
-.order-list>li>span:nth-of-type(4){
+
+.order-list>li>span:nth-of-type(4) {
     width: 100px;
 }
+
 #footer {
     margin-top: auto;
 }
