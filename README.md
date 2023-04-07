@@ -2,7 +2,7 @@
 
 Lightning POS is a restaurant point of sale application written in Node.js and EJS. Employees of restaurants can create and login to their accounts, access tables, create orders, and view them.
 
-**Link to project:** https://important-cyan-flannel-shirt.cyclic.app/
+**Link to project:** https://lightning-pos.cyclic.app/
 
 ![dashboard](https://raw.githubusercontent.com/andrewquach-dev/lightning-pos/main/assets/lightningpos-dashboard-screenshot.png?token=GHSAT0AAAAAABUFDWWTYBLSDYMJD427JPKCY2QSK7Q)
 
