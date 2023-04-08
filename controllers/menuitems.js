@@ -2,7 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const MenuItem = require("../models/MenuItem");
 
 module.exports = {
-    getMenu: async (req, res) => {
+    updateMenuItem: async (req, res) => {
         try {
             const menuItems = await MenuItem.find().lean();
             res.render("menu.ejs", { menuItems: menuItems });
@@ -25,17 +25,21 @@ module.exports = {
 
             await MenuItem.create({
                 name: req.body.name,
-                description: req.body.description,
                 price: req.body.price,
                 image: result.secure_url,
+                cloudinaryId: result.public_id,
             });
+
             console.log("Menu Item has been added!");
-            res.redirect("/menu");
+            const util = require('util');
+
+            console.log("HERE" + util.inspect(req.params));
+            res.redirect("/dashboard/");
         } catch (err) {
             console.log(err);
         }
     },
-    updateMenuItem: async (req, res) => {
+    editMenuItem: async (req, res) => {
         try {
             // Find menu item by id
             let menuItem = await MenuItem.findById(req.params.id);

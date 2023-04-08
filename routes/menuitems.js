@@ -5,11 +5,11 @@ const menuItemsController = require("../controllers/menuItems");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 // Menu Item Routes
-router.get("/:id", ensureAuth, menuItemsController.getMenuItem);
+router.put("/:id", menuItemsController.updateMenuItem);
 
 router.post("/createMenuItem", upload.single("file"), menuItemsController.createMenuItem);
 
-router.put("/updateMenuItem/:id", menuItemsController.updateMenuItem);
+router.put("/editMenuItem/:id", menuItemsController.editMenuItem);
 
 router.delete("/deleteMenuItem/:id", menuItemsController.deleteMenuItem);
 

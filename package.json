@@ -28,5 +28,8 @@
     "passport-local": "~1.0.0",
     "passport-twitter": "^0.1.5",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

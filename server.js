@@ -16,6 +16,7 @@ const postRoutes = require("./routes/posts");
 const dashboardRoutes = require("./routes/dashboard");
 const tableRoutes = require("./routes/tables");
 const orderRoutes = require("./routes/orders");
+const menuItemRoutes = require("./routes/menuitems");
 const dotenv = require("dotenv");
 
 const bodyParser = require("body-parser");
@@ -73,10 +74,11 @@ app.use(flash());
 
 // Routes ======================================================================
 app.use("/", mainRoutes);
-app.use("/post", postRoutes);
+app.use("/post", postRoutes);//delete this and anything related
 app.use("/dashboard", dashboardRoutes);
 app.use("/dashboard/tables", tableRoutes);
 app.use("/dashboard/order", orderRoutes);
+app.use("/dashboard/tables/menuItem", menuItemRoutes);
 
 // Launch ======================================================================
 app.listen(
