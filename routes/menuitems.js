@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../middleware/multer");
-const menuItemsController = require("../controllers/menuItems");
+const menuItemsController = require("../controllers/menuitems");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 // Menu Item Routes

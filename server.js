@@ -12,7 +12,6 @@ const flash = require("express-flash");
 const morgan = require("morgan");
 const connectDB = require("./config/database.js");
 const mainRoutes = require("./routes/main");
-const postRoutes = require("./routes/posts");
 const dashboardRoutes = require("./routes/dashboard");
 const tableRoutes = require("./routes/tables");
 const orderRoutes = require("./routes/orders");
@@ -74,11 +73,10 @@ app.use(flash());
 
 // Routes ======================================================================
 app.use("/", mainRoutes);
-app.use("/post", postRoutes);//delete this and anything related
 app.use("/dashboard", dashboardRoutes);
 app.use("/dashboard/tables", tableRoutes);
 app.use("/dashboard/order", orderRoutes);
-app.use("/dashboard/tables/menuItem", menuItemRoutes);
+app.use("/dashboard/menuitem", menuItemRoutes);
 
 // Launch ======================================================================
 app.listen(
