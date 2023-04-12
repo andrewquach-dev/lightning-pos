@@ -32,6 +32,12 @@
                             <h3>French fries</h3>
                         </button>
                     </form>
+                    <% for(var i=0; i<menuItems.length; i++) {%>
+                        <div class="table">
+                            <h3><%= menuItems[i].name%></h3>
+                        </div>
+                        <% } %>
+
                 </div>
                 <div class="card-bot">
                     <dialog class="modal add-menu-item-modal" id="addMenuItemModal">

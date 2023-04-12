@@ -9,11 +9,10 @@ module.exports = {
         } catch (err) {
             console.log(err);
         }
-    },
-    getMenuItem: async (req, res) => {
+    }, getMenuItems: async (req, res) => {
         try {
-            const menuItem = await MenuItem.findById(req.params.id);
-            res.render("menuItem.ejs", { menuItem: menuItem });
+            const menuItems = await MenuItem.find().sort({ name: "1" }).lean();
+            res.render("table.ejs", { menuItem: menuItem });
         } catch (err) {
             console.log(err);
         }

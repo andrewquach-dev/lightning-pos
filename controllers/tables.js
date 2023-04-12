@@ -1,5 +1,7 @@
 const Table = require("../models/Table");
 const Order = require("../models/Order");
+const MenuItem = require("../models/MenuItem");
+
 
 module.exports = {
   getTables: async (req, res) => {
@@ -31,8 +33,9 @@ module.exports = {
         table: req.params.id,
         isClosed: "false",
       }).lean();
-      console.log(order[0]);
-      res.render("table.ejs", { table: table, order: order });
+      const menuItems = await MenuItem.find().sort({ name: "1" }).lean();
+
+      res.render("table.ejs", { table: table, order: order, menuItems: menuItems });
     } catch (err) {
       console.log(err);
     }
