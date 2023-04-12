@@ -4,7 +4,7 @@ const User = require("../models/User");
 module.exports = {
   createOrder: async (req, res) => {
     try {
-      console.log(req);
+      console.log("REQ" + req.params);
       console.log(res);
       const orderUser = await User.findById(req.user.id);
       await Order.create({

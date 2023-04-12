@@ -22,7 +22,7 @@ module.exports = {
         try {
             // Upload image to cloudinary
             const result = await cloudinary.uploader.upload(req.file.path);
-
+            console.log("REQ" + req.params);
             await MenuItem.create({
                 name: req.body.name,
                 price: req.body.price,
@@ -31,10 +31,8 @@ module.exports = {
             });
 
             console.log("Menu Item has been added!");
-            const util = require('util');
 
-            console.log("HERE" + util.inspect(req.params));
-            res.redirect("/dashboard/");
+            res.redirect("/dashboard/tables");
         } catch (err) {
             console.log(err);
         }
