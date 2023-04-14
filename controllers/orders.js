@@ -1,5 +1,6 @@
 const Order = require("../models/Order");
 const User = require("../models/User");
+const MenuItem = require("../models/MenuItem");
 
 module.exports = {
   createOrder: async (req, res) => {
@@ -19,11 +20,58 @@ module.exports = {
       console.log(err);
     }
   },
+  addMenuItem: async (req, res) => {
+    try {
+        const order = await Order.findOne({ table: req.params.id, isClosed: false });
+        const menuItemId = req.body.menuItemId;
+        const menuItem = await MenuItem.findById(menuItemId);
+
+        if (!menuItem) {
+            return res.status(404).send("Menu item not found");
+        }
+
+        const existingItem = order.itemsOrdered.find((item) => item.menuItem == menuItemId);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+            existingItem.totalPrice = existingItem.quantity * existingItem.price;
+        } else {
+            order.itemsOrdered.push({
+                menuItem: menuItemId,
+                name: menuItem.name,
+                price: menuItem.price,
+                quantity: 1,
+                totalPrice: menuItem.price,
+            });
+        }
+
+        const total = order.itemsOrdered.reduce((total, item) => total + item.totalPrice, 0);
+        if (!isNaN(total)) {
+            order.total = total;
+        } else {
+            order.total = 0;
+        }
+
+        order.amountOwed = order.total - order.paymentAmount;
+
+        await order.save();
+
+        console.log("Updated order with new item: ", menuItem.name);
+        res.redirect("/dashboard/tables/" + req.params.id);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Error updating order: " + err.message);
+    }
+}
+
+
+
+
+  ,
   addFrenchfries: async (req, res) => {
     try {
-      console.log("id" + req.params.id);
       await Order.findOneAndUpdate(
-        { table: req.params.id , isClosed: false},
+        { table: req.params.id, isClosed: false },
         {
           $push: { itemsOrdered: { name: "french fries", price: 5.0 } },
         }
@@ -49,9 +97,10 @@ module.exports = {
       console.log(err);
     }
   },
+
   addPayment: async (req, res) => {
     try {
-      const order = await Order.findOne({ table: req.params.id , isClosed: false});
+      const order = await Order.findOne({ table: req.params.id, isClosed: false });
       let total =
         +parseFloat(order.itemsOrdered.reduce((a, e) => (a += e.price), 0)) +
         +parseFloat(
@@ -97,7 +146,7 @@ module.exports = {
       const orders = await Order.find({ isClosed: true })
         .sort({ name: "1" })
         .lean();
-        console.log(orders)
+      console.log(orders)
       res.render("orders.ejs", { orders: orders });
     } catch (err) {
       console.log(err);

@@ -32,11 +32,22 @@
                             <h3>French fries</h3>
                         </button>
                     </form>
-                    <% for(var i=0; i<menuItems.length; i++) {%>
-                        <div class="table">
-                            <h3><%= menuItems[i].name%></h3>
-                        </div>
+                    <% for (let i=0; i < menuItems.length; i++) { %>
+                        <form action="/dashboard/order/addMenuItem/<%= table._id %>" method="POST">
+                            <input type="hidden" name="menuItemId" value="<%= menuItems[i]._id %>">
+                            <button class="pic-btn" type="submit">
+                                <img src="<%= menuItems[i].image %>" alt="">
+                                <h3>
+                                    <%= menuItems[i].name %> - $<%= menuItems[i].price.toFixed(2) %>
+                                </h3>
+                            </button>
+                        </form>
                         <% } %>
+
+
+
+
+
 
                 </div>
                 <div class="card-bot">
