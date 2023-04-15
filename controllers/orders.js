@@ -22,52 +22,56 @@ module.exports = {
   },
   addMenuItem: async (req, res) => {
     try {
-        const order = await Order.findOne({ table: req.params.id, isClosed: false });
-        const menuItemId = req.body.menuItemId;
-        const menuItem = await MenuItem.findById(menuItemId);
+      const order = await Order.findOne({ table: req.params.id, isClosed: false });
+      const menuItemId = req.body.menuItemId;
+      const menuItem = await MenuItem.findById(menuItemId);
 
-        if (!menuItem) {
-            return res.status(404).send("Menu item not found");
-        }
+      if (!menuItem) {
+        return res.status(404).send("Menu item not found");
+      }
 
-        const existingItem = order.itemsOrdered.find((item) => item.menuItem == menuItemId);
+      let existingItem = order.itemsOrdered.find((item) => item.menuItem==(menuItemId));
 
-        if (existingItem) {
-            existingItem.quantity += 1;
-            existingItem.totalPrice = existingItem.quantity * existingItem.price;
-        } else {
-            order.itemsOrdered.push({
-                menuItem: menuItemId,
-                name: menuItem.name,
-                price: menuItem.price,
-                quantity: 1,
-                totalPrice: menuItem.price,
-            });
-        }
+      if (existingItem) {
+        existingItem.quantity += 1;
+        existingItem.totalPrice = existingItem.quantity * existingItem.price;
+      } else {
+        existingItem = {
+          menuItem: menuItem._id,
+          name: menuItem.name,
+          price: menuItem.price,
+          quantity: 1,
+          totalPrice: menuItem.price,
+        };
+        order.itemsOrdered.push(existingItem);
+      }
 
-        const total = order.itemsOrdered.reduce((total, item) => total + item.totalPrice, 0);
-        if (!isNaN(total)) {
-            order.total = total;
-        } else {
-            order.total = 0;
-        }
+      const itemTotalPrices = order.itemsOrdered.map(item => item.totalPrice);
+      console.log("Item total prices: ", itemTotalPrices);
 
-        order.amountOwed = order.total - order.paymentAmount;
+      const total = itemTotalPrices.reduce((total, itemTotalPrice) => total + itemTotalPrice, 0);
+      if (!isNaN(total)) {
+        order.total = total;
+      } else {
+        order.total = 0;
+      }
 
-        await order.save();
+      order.amountOwed = order.total - order.paymentAmount;
 
-        console.log("Updated order with new item: ", menuItem.name);
-        res.redirect("/dashboard/tables/" + req.params.id);
+      await order.save();
+      console.log("Existing item: ", existingItem);
+      console.log("Order items: ", order.itemsOrdered);
+      console.log("Total: ", total);
+
+      console.log("Updated order with new item: ", menuItem.name);
+      res.redirect("/dashboard/tables/" + req.params.id);
     } catch (err) {
-        console.log(err);
-        res.status(500).send("Error updating order: " + err.message);
+      console.log(err);
+      res.status(500).send("Error updating order: " + err.message);
     }
-}
-
-
-
-
+  }
   ,
+
   addFrenchfries: async (req, res) => {
     try {
       await Order.findOneAndUpdate(

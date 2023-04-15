@@ -60,6 +60,7 @@ app.use(
     //!Change: MongoStore syntax has changed
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URI,
+      dbName: 'lightning'
     }),
   })
 );

@@ -302,6 +302,7 @@ button.ppl-count-btn {
 
 .menu-items {
     display: flex;
+    flex-wrap: wrap;
     gap: 25px;
     padding: 40px;
 }
