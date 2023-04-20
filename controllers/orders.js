@@ -22,47 +22,49 @@ module.exports = {
   },
   addMenuItem: async (req, res) => {
     try {
-        const order = await Order.findOne({ table: req.params.id, isClosed: false });
-        const menuItemId = req.body.menuItemId;
-        const menuItem = await MenuItem.findById(menuItemId);
+      const order = await Order.findOne({ table: req.params.id, isClosed: false });
+      const menuItemId = req.body.menuItemId;
+      const menuItem = await MenuItem.findById(menuItemId);
 
-        if (!menuItem) {
-            return res.status(404).send("Menu item not found");
-        }
+      if (!menuItem) {
+        return res.status(404).send("Menu item not found");
+      }
 
-        const existingItem = order.itemsOrdered.find((item) => item.menuItem == menuItemId);
+      const existingItem = order.itemsOrdered.find((item) => item.menuItem == menuItemId);
 
-        if (existingItem) {
-            existingItem.quantity += 1;
-            existingItem.totalPrice = existingItem.quantity * existingItem.price;
-        } else {
-            order.itemsOrdered.push({
-                menuItem: menuItemId,
-                name: menuItem.name,
-                price: menuItem.price,
-                quantity: 1,
-                totalPrice: menuItem.price,
-            });
-        }
+      if (existingItem) {
+        existingItem.quantity += 1;
+        existingItem.totalPrice = existingItem.quantity * existingItem.price;
+        order.markModified('itemsOrdered'); // Add this line to inform Mongoose about the changes
+      } else {
+        order.itemsOrdered.push({
+          menuItem: menuItemId,
+          name: menuItem.name,
+          price: menuItem.price,
+          quantity: 1,
+          totalPrice: menuItem.price,
+        });
+      }
 
-        const total = order.itemsOrdered.reduce((total, item) => total + item.totalPrice, 0);
-        if (!isNaN(total)) {
-            order.total = total;
-        } else {
-            order.total = 0;
-        }
+      const total = order.itemsOrdered.reduce((total, item) => total + item.totalPrice, 0);
+      if (!isNaN(total)) {
+        order.total = total;
+      } else {
+        order.total = 0;
+      }
 
-        order.amountOwed = order.total - order.paymentAmount;
+      order.amountOwed = order.total - order.paymentAmount;
 
-        await order.save();
+      await order.save();
 
-        console.log("Updated order with new item: ", menuItem.name);
-        res.redirect("/dashboard/tables/" + req.params.id);
+      console.log("Updated order with new item: ", menuItem.name);
+      res.redirect("/dashboard/tables/" + req.params.id);
     } catch (err) {
-        console.log(err);
-        res.status(500).send("Error updating order: " + err.message);
+      console.log(err);
+      res.status(500).send("Error updating order: " + err.message);
     }
-}
+  }
+
 
 
 

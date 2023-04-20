@@ -97,44 +97,36 @@
                             </p>
                             <hr>
                             <ul>
-                                <% let items=order[0].itemsOrdered.reduce((a, o)=> {if (a.some((f) => f.name == o.name))
-                                    {let i = a.findIndex((x) => x.name == o.name);a[i].count++; a[i].total += o.price;}
-                                    else {a.push({ count: 1, name: o.name, total: o.price });}return a;}, []) %>
-                                    <% for(var i=0; i<items.length; i++) {%>
-                                        <li>
-                                            <span>
-                                                <%= items[i].count %>x
-                                            </span>
-                                            <span>
-                                                <%= items[i].name %>
-                                            </span>
-                                            <span>$<%= items[i].total %></span>
+                                <% for(var i=0; i<order[0].itemsOrdered.length; i++) {%>
+                                    <li>
+                                        <span>
+                                            <%= order[0].itemsOrdered[i].quantity %>x
+                                        </span>
+                                        <span>
+                                            <%= order[0].itemsOrdered[i].name %>
+                                        </span>
+                                        <span>$<%= order[0].itemsOrdered[i].totalPrice %></span>
+                                    </li>
+                                    <% } %>
+                                        <li><span>Tax 5.25%:</span>
+                                            <span>$<%= (order[0].total * 0.0525).toFixed(2) %></span>
                                         </li>
-                                        <% } %>
-
-                                            <li><span>Tax 5.25%:</span>
-                                                <span>$<%= (order[0].itemsOrdered.reduce((a,e)=>
-                                                        a+=e.price,0)*.0525).toFixed(2) %></span>
-                                            </li>
-                                            <li><span>Subtotal:</span>
-                                                <span>$<%= order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0) %></span>
-                                            </li>
-                                            <li><span>Total:</span>
-                                                <span>$<%= parseFloat(order[0].itemsOrdered.reduce((a,e)=>
-                                                        a+=e.price,0))+parseFloat((order[0].itemsOrdered.reduce((a,e)=>a+=e.price,0)*.0525).toFixed(2))
-                                                        %></span>
-                                            </li>
-
-
+                                        <li><span>Subtotal:</span>
+                                            <span>$<%= order[0].total %></span>
+                                        </li>
+                                        <li><span>Total:</span>
+                                            <span>$<%= (order[0].total * 1.0525).toFixed(2) %></span>
+                                        </li>
                             </ul>
                             <ul>
-                                <% if (order[0].paymentAmount!==0) { %>
+                                <% if (order[0].paymentAmount !==0) { %>
                                     <li>Cash: $<%= order[0].paymentAmount %>
                                     </li>
                                     <li>Amount owed: $ <%= order[0].amountOwed %>
                                     </li>
                                     <% } %>
                             </ul>
+
                             <% } %>
 
 
