@@ -63,41 +63,6 @@ module.exports = {
       console.log(err);
       res.status(500).send("Error updating order: " + err.message);
     }
-  }
-
-
-
-
-
-  ,
-  addFrenchfries: async (req, res) => {
-    try {
-      await Order.findOneAndUpdate(
-        { table: req.params.id, isClosed: false },
-        {
-          $push: { itemsOrdered: { name: "french fries", price: 5.0 } },
-        }
-      );
-      console.log("Added french fries to items ordered");
-      res.redirect("/dashboard/tables/" + req.params.id);
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  addHamburger: async (req, res) => {
-    try {
-      console.log("id" + req.params.id);
-      await Order.findOneAndUpdate(
-        { table: req.params.id, isClosed: false },
-        {
-          $push: { itemsOrdered: { name: "hamburger", price: 5.0 } },
-        }
-      );
-      console.log("Added hamburger to items ordered");
-      res.redirect("/dashboard/tables/" + req.params.id);
-    } catch (err) {
-      console.log(err);
-    }
   },
 
   addPayment: async (req, res) => {

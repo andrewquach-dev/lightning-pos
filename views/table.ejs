@@ -21,17 +21,6 @@
             <div class="menu card lg-width xl-height">
                 <h3 class="top-card-text">Menu Items</h3>
                 <div class="menu-items">
-                    <form action="/dashboard/order/addHamburger/<%=table._id%>?_method=PUT" method="POST">
-                        <button class="pic-btn" type="submit"><img src="/img/cheeseburger.jpg" alt="">
-                            <h3>Cheeseburger</h3>
-                        </button>
-                    </form>
-
-                    <form action="/dashboard/order/addFrenchfries/<%=table._id%>?_method=PUT" method="POST">
-                        <button class="pic-btn" type="submit"><img src="/img/frenchfries.jpg" alt="">
-                            <h3>French fries</h3>
-                        </button>
-                    </form>
                     <% for (let i=0; i < menuItems.length; i++) { %>
                         <form action="/dashboard/order/addMenuItem/<%= table._id %>" method="POST">
                             <input type="hidden" name="menuItemId" value="<%= menuItems[i]._id %>">
@@ -43,12 +32,6 @@
                             </button>
                         </form>
                         <% } %>
-
-
-
-
-
-
                 </div>
                 <div class="card-bot">
                     <dialog class="modal add-menu-item-modal" id="addMenuItemModal">
