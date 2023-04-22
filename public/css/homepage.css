@@ -135,36 +135,6 @@ a:hover {
 
 }
 
-@media (max-width: 768px) {
-
-    #landing {
-        flex-direction: column;
-
-    }
-
-    .landing-img {
-        margin-top: 4em;
-    }
-
-
-    .cards {
-        flex-direction: column;
-    }
-
-    ul.cards li.service-card {
-        margin: 4em 0 0 0;
-
-    }
-
-    .about-content h2 {
-        text-align: center;
-    }
-
-    #footer .row {
-        flex-direction: column;
-    }
-
-}
 
 .logo {
     font-weight: 700;
@@ -347,8 +317,41 @@ a:hover {
 #footer .row {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
+
+@media (max-width: 768px) {
+
+    #landing {
+        flex-direction: column;
+
+    }
+
+    .landing-img {
+        margin-top: 4em;
+    }
+
+
+    .cards {
+        flex-direction: column;
+    }
+
+    ul.cards li.service-card {
+        margin: 4em 0 0 0;
+
+    }
+
+    .about-content h2 {
+        text-align: center;
+    }
+
+    #footer .row {
+        width: auto;
+        flex-direction: column;
+    }
+
+}
+
 
 #footer .row>* {
     flex: 1;
@@ -357,6 +360,7 @@ a:hover {
 #footer .col {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 #footer ul {
