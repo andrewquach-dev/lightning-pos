@@ -68,30 +68,32 @@ module.exports = {
   addPayment: async (req, res) => {
     try {
       const order = await Order.findOne({ table: req.params.id, isClosed: false });
-      let total =
-        +parseFloat(order.itemsOrdered.reduce((a, e) => (a += e.price), 0)) +
-        +parseFloat(
-          (
-            order.itemsOrdered.reduce((a, e) => (a += e.price), 0) * 0.0525
-          ).toFixed(2)
-        );
-      console.log(req.body);
-      await Order.findOneAndUpdate(
-        { table: req.params.id, isClosed: false },
-        {
-          $set: {
-            paymentAmount: +req.body.paymentAmount,
-            total: total,
-            amountOwed: +total - +req.body.paymentAmount,
-          },
-        }
-      );
+
+      const subtotal = order.itemsOrdered.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      const tax = subtotal * 0.0525;
+      const total = subtotal + tax;
+
+      const paymentAmount = +req.body.paymentAmount;
+      const newPaymentAmount = order.paymentAmount + paymentAmount;
+
+      const amountOwed = (total - newPaymentAmount).toFixed(2); // round to 2 decimal places
+
+      await order.updateOne({
+        $set: {
+          paymentAmount: newPaymentAmount,
+          total,
+          amountOwed,
+        },
+      });
+
       console.log("Added payment details to order");
       res.redirect("/dashboard/tables/" + req.params.id);
     } catch (err) {
       console.log(err);
+      res.status(500).send("Error updating order: " + err.message);
     }
   },
+
   closeOrder: async (req, res) => {
     try {
       await Order.findOneAndUpdate(
