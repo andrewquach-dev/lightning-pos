@@ -73,3 +73,11 @@ ul li:not(:last-child) span:first-child {
 ul li:not(:nth-last-child(-n+3)) span:nth-child(2) {
   margin-right: 10px;
 }
+
+.order-item{
+  display: flex;
+}
+
+.order-item > *{
+  margin: 0 1em;
+}

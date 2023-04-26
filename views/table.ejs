@@ -82,16 +82,16 @@
                             <ul>
                                 <% for (var i=0; i < order[0].itemsOrdered.length; i++) { %>
                                     <li>
-                                        <span>
+                                        <span class="order-item">
                                             <form
                                                 action="/dashboard/order/incrementMenuItem/<%= table._id %>/<%= order[0].itemsOrdered[i].menuItem %>?_method=PUT"
                                                 method="POST">
-                                                    <button type="submit" class="btn btn-outline-danger">+</button>
+                                                    <button type="submit" class="">+</button>
                                             </form>
                                             <%= order[0].itemsOrdered[i].quantity %>
                                                 <form method="POST"
                                                     action="/dashboard/order/decrementMenuItem/<%= table._id %>/<%= order[0].itemsOrdered[i].menuItem %>?_method=PUT">
-                                                        <button type="submit" class="btn btn-primary btn-sm">-</button>
+                                                        <button type="submit" class="">-</button>
                                                 </form>
                                         </span>
                                         <span>
