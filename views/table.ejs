@@ -80,10 +80,19 @@
                             </p>
                             <hr>
                             <ul>
-                                <% for(var i=0; i<order[0].itemsOrdered.length; i++) {%>
+                                <% for (var i=0; i < order[0].itemsOrdered.length; i++) { %>
                                     <li>
                                         <span>
-                                            <%= order[0].itemsOrdered[i].quantity %>x
+                                            <form
+                                                action="/dashboard/order/incrementMenuItem/<%= table._id %>/<%= order[0].itemsOrdered[i].menuItem %>?_method=PUT"
+                                                method="POST">
+                                                    <button type="submit" class="btn btn-outline-danger">+</button>
+                                            </form>
+                                            <%= order[0].itemsOrdered[i].quantity %>
+                                                <form method="POST"
+                                                    action="/dashboard/order/decrementMenuItem/<%= table._id %>/<%= order[0].itemsOrdered[i].menuItem %>?_method=PUT">
+                                                        <button type="submit" class="btn btn-primary btn-sm">-</button>
+                                                </form>
                                         </span>
                                         <span>
                                             <%= order[0].itemsOrdered[i].name %>
@@ -91,6 +100,11 @@
                                         <span>$<%= order[0].itemsOrdered[i].totalPrice %></span>
                                     </li>
                                     <% } %>
+
+
+
+
+
                                         <li><span>Tax 5.25%:</span>
                                             <span>$<%= (order[0].total * 0.0525).toFixed(2) %></span>
                                         </li>

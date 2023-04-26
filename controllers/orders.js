@@ -118,5 +118,86 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  }, incrementMenuItem: async (req, res) => {
+    try {
+      const order = await Order.findOne({ table: req.params.id, isClosed: false });
+      const menuItemId = req.params.menuItemId;
+      const existingItem = order.itemsOrdered.find((item) => item.menuItem.toString() === menuItemId.toString());
+
+      if (!existingItem) {
+        const menuItem = await MenuItem.findById(menuItemId);
+        if (!menuItem) {
+          return res.status(404).send("Menu item not found");
+        }
+        order.itemsOrdered.push({
+          menuItem: menuItemId,
+          name: menuItem.name,
+          price: menuItem.price,
+          quantity: 1,
+          totalPrice: menuItem.price,
+        });
+      } else {
+        existingItem.quantity += 1;
+        existingItem.totalPrice = existingItem.quantity * existingItem.price;
+      }
+
+      order.markModified("itemsOrdered");
+      const total = order.itemsOrdered.reduce((total, item) => total + item.totalPrice, 0);
+      if (!isNaN(total)) {
+        order.total = total;
+      } else {
+        order.total = 0;
+      }
+      order.amountOwed = order.total - order.paymentAmount;
+      await order.save();
+
+      console.log("Incremented quantity of order item: ", existingItem.name);
+      res.redirect("/dashboard/tables/" + req.params.id);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Error updating order: " + err.message);
+    }
   },
+
+  decrementMenuItem: async (req, res) => {
+    try {
+      const order = await Order.findOne({ table: req.params.id, isClosed: false });
+      const menuItemId = req.params.menuItemId;
+      const existingItem = order.itemsOrdered.find((item) => item.menuItem.toString() === menuItemId.toString());
+
+      if (!existingItem) {
+        return res.status(404).send("Menu item not found in order");
+      }
+
+      if (existingItem.quantity === 1) {
+        // Remove item if quantity is 1
+        order.itemsOrdered = order.itemsOrdered.filter((item) => item.menuItem.toString() !== menuItemId.toString());
+      } else {
+        // Decrement quantity by 1 and update total price
+        existingItem.quantity -= 1;
+        existingItem.totalPrice = existingItem.quantity * existingItem.price;
+      }
+
+      order.markModified("itemsOrdered");
+      const total = order.itemsOrdered.reduce((total, item) => total + item.totalPrice, 0);
+      if (!isNaN(total)) {
+        order.total = total;
+      } else {
+        order.total = 0;
+      }
+      order.amountOwed = order.total - order.paymentAmount;
+      await order.save();
+
+      console.log("Decremented quantity of order item: ", existingItem.name);
+      res.redirect("/dashboard/tables/" + req.params.id);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Error updating order: " + err.message);
+    }
+  }
+
+
+
+
+
 };
