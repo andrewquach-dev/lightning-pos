@@ -78,18 +78,51 @@ a:hover,
     color: #51B5E0;
 }
 
-#dashboard {
-    height: 1200px
-}
 
 #dashboard.container {
     margin-top: -50px;
     margin-bottom: 150px;
+    width: 1440px;
 }
 
 .card-tainer {
-    display: flex;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-gap: 20px;
+}
+
+
+@media screen and (max-width: 1490px) {
+    .card-tainer {
+        grid-template-columns: 1fr;
+        /* single column */
+    }
+
+    .lg-width {
+        width: 1042px;
+    }
+}
+
+@media screen and (max-width: 1140px) {
+    .card-tainer {
+        grid-template-columns: 1fr;
+        /* single column */
+    }
+
+    .col {
+        width: 100%;
+        /* remove fixed width */
+    }
+
+    .sm-width {
+        width: 50%;
+        /* make small divs 50% width */
+    }
+
+    .lg-width {
+        width: 100%;
+        max-width: 70%;
+    }
 }
 
 
@@ -176,7 +209,7 @@ button.ppl-count-btn {
 }
 
 .lg-width {
-    width: 1085px;
+    max-width: 100%;
 }
 
 .xl-width {
@@ -187,7 +220,7 @@ button.ppl-count-btn {
 
 
 .sm-width {
-    width: 319px;
+    width: 347px;
 }
 
 
@@ -211,24 +244,27 @@ button.ppl-count-btn {
 
 .col>.lg-height:first-of-type {
     background-image: url('/img/firstWidget.png');
-    width: 100%;
     height: 350px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .col>.lg-height:nth-child(2) {
     background-image: url('/img/secondWidget.png');
     background-repeat: no-repeat;
     display: flex;
+    background-size: contain;
 }
 
 .col>.lg-height:nth-child(2)>a {
     margin-top: auto;
 }
 
-.col>.md-height:first-of-type {
+.col>.sm-height:first-of-type {
     background-image: url('/img/thirdWidget.png');
-    width: 100%;
     height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .top-card-text {
